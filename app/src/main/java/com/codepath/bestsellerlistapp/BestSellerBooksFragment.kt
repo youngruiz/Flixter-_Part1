@@ -1,6 +1,7 @@
 package com.codepath.bestsellerlistapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +10,19 @@ import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.codepath.asynchttpclient.AsyncHttpClient
+import com.codepath.asynchttpclient.RequestParams
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import com.codepath.bestsellerlistapp.R
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import okhttp3.Headers
+import org.json.JSONObject
 
 // --------------------------------//
 // CHANGE THIS TO BE YOUR API KEY  //
 // --------------------------------//
-private const val API_KEY = "<YOUR-API-KEY-HERE>"
+private const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
 
 /*
  * The class for the only fragment in the app, which contains the progress bar,
@@ -46,8 +54,54 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
         progressBar.show()
 
         // Create and set up an AsyncHTTPClient() here
+        val client = AsyncHttpClient()
+        val params = RequestParams()
+        params["api_key"] = API_KEY
+
 
         // Using the client, perform the HTTP request
+        client[
+                "https://api.themoviedb.org/3/movie/now_playing",
+                params,
+                object : JsonHttpResponseHandler() {
+
+                    override fun onFailure(statusCode: Int, headers: Headers?, response: String?, throwable: Throwable?) {
+                        Log.i("Daniel", "err")
+                        Log.i("Daniel", "Statuscode: + $statusCode + \n + Errorcode: + $response")
+                    }
+
+                    override fun onSuccess(statusCode: Int, headers: Headers?, json: JSON?) {
+
+                        // The wait for a response is over
+                        progressBar.hide()
+
+                        // This is called when response HTTP status is "200 OK"
+                        Log.i("Daniel", "Everything went well.")
+
+                        if (json == null){
+                            Log.i("Daniel", "Oh no")
+                        }
+
+                        Log.i("Daniel", json.toString())
+
+                        val resultsJSON: JSONObject = json?.jsonObject as JSONObject
+
+                        val booksRawJSON : String = resultsJSON.get("results").toString()
+
+                        Log.i("Daniel", resultsJSON.toString())
+                        Log.i("Daniel", booksRawJSON)
+
+                        // Create gson object.
+                        val gson = Gson()
+                        val arrayBookType = object : TypeToken<List<BestSellerBook>>() {}.type
+                        val models : List<BestSellerBook> = gson.fromJson(booksRawJSON, arrayBookType)
+                        recyclerView.adapter = BestSellerBooksRecyclerViewAdapter(models, this@BestSellerBooksFragment)
+
+                    }
+                }
+
+
+        ]
 
         /* Uncomment me once you complete the above sections!
         {
@@ -99,7 +153,7 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
      * What happens when a particular book is clicked.
      */
     override fun onItemClick(item: BestSellerBook) {
-        Toast.makeText(context, "test: " + item.title, Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "test: " + item.original_title, Toast.LENGTH_LONG).show()
     }
 
 }

@@ -3,9 +3,16 @@ package com.codepath.bestsellerlistapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.codepath.bestsellerlistapp.R.id
+
+import com.bumptech.glide.Glide
+
+import android.util.Log
+
+
 
 /**
  * [RecyclerView.Adapter] that can display a [BestSellerBook] and makes a call to the
@@ -30,11 +37,16 @@ class BestSellerBooksRecyclerViewAdapter(
     inner class BookViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         var mItem: BestSellerBook? = null
         val mBookTitle: TextView = mView.findViewById<View>(id.book_title) as TextView
-        val mBookAuthor: TextView = mView.findViewById<View>(id.book_author) as TextView
+        val mBookDescription: TextView = mView.findViewById<View>(id.book_description) as TextView
+        val mBookImage: ImageView = mView.findViewById<View>(id.book_image) as ImageView
 
-        override fun toString(): String {
-            return mBookTitle.toString() + " '" + mBookAuthor.text + "'"
-        }
+//        override fun toString(): String {
+//            return "https://image.tmdb.org/t/p/w500/" + mBookImage.toString()
+//        }
+//
+//        override fun toString(): String {
+//            return mBookTitle.toString() + " '" + mBookAuthor.text + "'"
+//        }
     }
 
     /**
@@ -44,8 +56,15 @@ class BestSellerBooksRecyclerViewAdapter(
         val book = books[position]
 
         holder.mItem = book
-        holder.mBookTitle.text = book.title
-        holder.mBookAuthor.text = book.author
+        holder.mBookTitle.text = book.original_title
+        holder.mBookDescription.text = book.overview
+
+        var fullUrl = "https://image.tmdb.org/t/p/w500/" + book.poster_path
+
+        Glide.with(holder.mView)
+            .load(fullUrl)
+            .centerInside()
+            .into(holder.mBookImage)
 
         holder.mView.setOnClickListener {
             holder.mItem?.let { book ->
