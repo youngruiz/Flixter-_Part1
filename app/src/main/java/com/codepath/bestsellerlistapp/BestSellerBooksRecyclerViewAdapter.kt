@@ -1,5 +1,7 @@
 package com.codepath.bestsellerlistapp
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +21,9 @@ import android.util.Log
  * specified [OnListFragmentInteractionListener].
  */
 class BestSellerBooksRecyclerViewAdapter(
+    private val context: Context,
     private val books: List<BestSellerBook>,
-    private val mListener: OnListFragmentInteractionListener?
+    private val mListener: OnListFragmentInteractionListener?,
     )
     : RecyclerView.Adapter<BestSellerBooksRecyclerViewAdapter.BookViewHolder>()
     {
@@ -36,8 +39,8 @@ class BestSellerBooksRecyclerViewAdapter(
      */
     inner class BookViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         var mItem: BestSellerBook? = null
-        val mBookTitle: TextView = mView.findViewById<View>(id.book_title) as TextView
-        val mBookDescription: TextView = mView.findViewById<View>(id.book_description) as TextView
+        //val mBookTitle: TextView = mView.findViewById<View>(id.book_title) as TextView
+        // val mBookDescription: TextView = mView.findViewById<View>(id.book_description) as TextView
         val mBookImage: ImageView = mView.findViewById<View>(id.book_image) as ImageView
 
 //        override fun toString(): String {
@@ -56,8 +59,8 @@ class BestSellerBooksRecyclerViewAdapter(
         val book = books[position]
 
         holder.mItem = book
-        holder.mBookTitle.text = book.original_title
-        holder.mBookDescription.text = book.overview
+        //holder.mBookTitle.text = book.original_title
+        // holder.mBookDescription.text = book.overview
 
         var fullUrl = "https://image.tmdb.org/t/p/w500/" + book.poster_path
 
@@ -79,4 +82,41 @@ class BestSellerBooksRecyclerViewAdapter(
     override fun getItemCount(): Int {
         return books.size
     }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+
+//        private val mediaImageView = itemView.findViewById<ImageView>(R.id.mediaImage)
+//        private val titleTextView = itemView.findViewById<TextView>(R.id.mediaTitle)
+//        private val abstractTextView = itemView.findViewById<TextView>(R.id.mediaAbstract)
+//
+//        init {
+//            itemView.setOnClickListener(this)
+//        }
+//
+//        // TODO: Write a helper method to help set up the onBindViewHolder method
+//        fun bind(article: Article) {
+//            titleTextView.text = article.headline?.main
+//            abstractTextView.text = article.abstract
+//
+//            Glide.with(context)
+//                .load(article.mediaImageUrl)
+//                .into(mediaImageView)
+//        }
+
+        override fun onClick(v: View?) {
+//            // TODO: Get selected article
+//            var article = articles[absoluteAdapterPosition]
+//
+//            // TODO: Navigate to Details screen and pass selected article
+//            val intent = Intent(context, DetailActivity::class.java)
+//            intent.putExtra(ARTICLE_EXTRA, article)
+//            context.startActivity(intent)
+            val book = books[absoluteAdapterPosition]
+            val intent = Intent(context, DetailActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
+
+
 }

@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getSupportActionBar()?.setTitle("Currently Playing")
+        getSupportActionBar()?.setTitle("This Week | Trending TV")
         val supportFragmentManager = supportFragmentManager
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(id.content, BestSellerBooksFragment(), null).commit()

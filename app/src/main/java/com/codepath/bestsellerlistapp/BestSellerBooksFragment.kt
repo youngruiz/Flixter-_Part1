@@ -18,6 +18,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.Headers
 import org.json.JSONObject
+import android.content.Context
 
 // --------------------------------//
 // CHANGE THIS TO BE YOUR API KEY  //
@@ -61,7 +62,8 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
 
         // Using the client, perform the HTTP request
         client[
-                "https://api.themoviedb.org/3/movie/now_playing",
+                //"https://api.themoviedb.org/3/movie/now_playing",
+                "https://api.themoviedb.org/3/trending/tv/week",
                 params,
                 object : JsonHttpResponseHandler() {
 
@@ -95,7 +97,8 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
                         val gson = Gson()
                         val arrayBookType = object : TypeToken<List<BestSellerBook>>() {}.type
                         val models : List<BestSellerBook> = gson.fromJson(booksRawJSON, arrayBookType)
-                        recyclerView.adapter = BestSellerBooksRecyclerViewAdapter(models, this@BestSellerBooksFragment)
+                        recyclerView.adapter =
+                            context?.let { BestSellerBooksRecyclerViewAdapter(it, models, this@BestSellerBooksFragment) }
 
                     }
                 }
