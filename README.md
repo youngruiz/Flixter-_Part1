@@ -1,18 +1,18 @@
-# Android Project 3 - *Flixster+ Part 1*
+# Android Project 3 - *Flixster- Part 1*
 
-Submitted by: **Your Name Here**
+Submitted by: **Daniel Ruiz**
 
-**Name of your app** is a movie browsing app that allows users to browse movies currently playing in theaters.
+**Flixster- Part 1** is a movie browsing app that allows users to browse movies currently playing in theaters.
 
-Time spent: **X** hours spent in total
+Time spent: **6** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [ ] **Make a request to [The Movie Database API's `now_playing`](https://developers.themoviedb.org/3/movies/get-now-playing) endpoint to get a list of current movies**
-- [ ] **Parse through JSON data and implement a RecyclerView to display all movies**
-- [ ] **Use Glide to load and display movie poster images**
+- [x] **Make a request to [The Movie Database API's `now_playing`](https://developers.themoviedb.org/3/movies/get-now-playing) endpoint to get a list of current movies**
+- [x] **Parse through JSON data and implement a RecyclerView to display all movies**
+- [x] **Use Glide to load and display movie poster images**
 
 The following **optional** features are implemented:
 
@@ -30,10 +30,10 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/youngruiz/Flixter-_Part1/blob/main/Flixster_Part1_demo.gif' title='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
+GIF created with [LiceCAP](https://www.cockos.com/licecap/)
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
@@ -43,9 +43,12 @@ GIF created with ...
 
 Describe any challenges encountered while building the app.
 
+- Layout is in grid. Have not figured out how to make movie cell take screen width
+
+
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2022 Daniel Ruiz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
