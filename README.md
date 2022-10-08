@@ -27,7 +27,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/youngruiz/Flixter-_Part1/blob/main/Flixster_Part2_demo.gif' title='Video Walkthrough'' />
+<img src='https://github.com/youngruiz/Flixter-_Part1/blob/main/Flixster_Part2_demo.gif' title='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with [LiceCAP](https://www.cockos.com/licecap/)
