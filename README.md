@@ -2,9 +2,9 @@
 
 Submitted by: **Daniel Ruiz**
 
-**Name of your app** is a movie browsing app that allows users to browse ... [TODO] 
+**Name of your app** is a movie browsing app that allows users to browse this weeks trending TV shows for the week. 
 
-Time spent: **X** hours spent in total
+Time spent: **6** hours spent in total
 
 ## Required Features
 
@@ -13,7 +13,7 @@ The following **required** functionality is completed:
 - [x] **Choose any endpoint on The MovieDB API except `now_playing`**
   - Chosen Endpoint: Trending TV for this Week
 - [x] **Make a request to your chosen endpoint and implement a RecyclerView to display all entries**
-- [ ] **Use Glide to load and display at least one image per entry**
+- [x] **Use Glide to load and display at least one image per entry**
 - [ ] **Click on an entry to view specific details about that entry using Intents**
 
 The following **optional** features are implemented:
